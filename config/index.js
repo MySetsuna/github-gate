@@ -1,16 +1,15 @@
 
-const fs = require('fs');
+var fs = require('fs');
 
-const TRUNCATE_THRESHOLD = 10;
-const REVEALED_CHARS = 3;
-const REPLACEMENT = '***';
+var TRUNCATE_THRESHOLD = 10;
+var REVEALED_CHARS = 3;
+var REPLACEMENT = '***';
 
 function loadConfig() {
-    const config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf-8'));
-    console.log(config, __dirname + '/config.json');
+    var config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf-8'));
     log('Configuration');
-    for (const i in config) {
-        let configItem = process.env[i.toUpperCase()] || config[i];
+    for (var i in config) {
+        var configItem = process.env[i.toUpperCase()] || config[i];
         if (typeof configItem === 'string') {
             configItem = configItem.trim();
         }

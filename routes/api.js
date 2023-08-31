@@ -25,7 +25,7 @@ function callGithubApi(req, cb) {
     headers: { 'content-length': data.length, accept, authorization }
   };
 
-  let body = '';
+  var body = '';
   var req1 = https.request(reqOptions, function (res) {
     res.setEncoding('utf8');
     res.on('data', function (chunk) { body += chunk; });
