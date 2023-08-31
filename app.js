@@ -3,7 +3,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
 var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api');
 var authRouter = require('./routes/authenticate');
 
 var app = express();
@@ -17,7 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
 app.use('/authenticate', authRouter);
 
 // error handler

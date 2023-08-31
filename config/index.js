@@ -1,12 +1,13 @@
 
 var fs = require('fs');
+var path = require('path')
 
 var TRUNCATE_THRESHOLD = 10;
 var REVEALED_CHARS = 3;
 var REPLACEMENT = '***';
 
 function loadConfig() {
-    var config = JSON.parse(fs.readFileSync(__dirname + '/config.json', 'utf-8'));
+    var config = JSON.parse(fs.readFileSync(path.resolve('config.json'), 'utf-8'));
     log('Configuration');
     for (var i in config) {
         var configItem = process.env[i.toUpperCase()] || config[i];
