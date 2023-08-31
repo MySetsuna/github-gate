@@ -4,11 +4,12 @@ var logger = require('morgan');
 var cors = require('cors')
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/authenticate');
+var { config } = require('./config/index')
 
 var app = express();
-
+console.log(config.origin, 'config.origin');
 // 解决跨域
-app.use(cors());
+app.use(cors({ origin: config.origin, credentials: true }));
 
 app.use(logger('dev'));
 app.use(express.json());

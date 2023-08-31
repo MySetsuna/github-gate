@@ -2,9 +2,9 @@
 var express = require('express');
 var https = require('https');
 var qs = require('querystring');
-var { loadConfig, log } = require('../config/index')
+var { config, log } = require('../config/index')
 var router = express.Router();
-var config = loadConfig()
+
 /* GET users listing. */
 router.get('/:code', function (req, res) {
     log('authenticating code:', req.params.code, true);
@@ -16,6 +16,7 @@ router.get('/:code', function (req, res) {
         } else {
             result = { token };
             log('token', result.token, true);
+            res.setHeader('Set-Cookie', `${config.cookie_key_token}=${token}; SameSite=None; Secure=true; Path=/; Domain=${config.origin}`);
         }
         res.json(result);
     });

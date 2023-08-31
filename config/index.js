@@ -7,7 +7,12 @@ var REVEALED_CHARS = 3;
 var REPLACEMENT = '***';
 
 function loadConfig() {
-    var config = JSON.parse(fs.readFileSync(path.resolve('config.json'), 'utf-8'));
+    var config;
+    if (process.env.NODE_ENV === 'production ') {
+        config = JSON.parse(fs.readFileSync(path.resolve('config.json'), 'utf-8'));
+    } else {
+        config = JSON.parse(fs.readFileSync(path.resolve('config-dev.json'), 'utf-8'));
+    }
     log('Configuration');
     for (var i in config) {
         var configItem = process.env[i.toUpperCase()] || config[i];
@@ -44,5 +49,5 @@ function log(label, value, sanitized) {
         console.log(label, value);
     }
 }
-
-module.exports = { loadConfig, log };
+var config = loadConfig()
+module.exports = { config, log };

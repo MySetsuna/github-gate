@@ -1,0 +1,12 @@
+{
+    "oauth_client_id": "230d10a766b329d1d0ce",
+    "oauth_client_secret": "e526d845d9ccf0acce71cfe93d91ac26fc90f171",
+    "oauth_host": "github.com",
+    "oauth_port": 443,
+    "oauth_path": "/login/oauth/access_token",
+    "oauth_method": "POST",
+    "api_host": "api.github.com",
+    "cookie_key_token": "AuthToken",
+    "origin": "https://localhost:5173",
+    "domian": "localhost"
+}

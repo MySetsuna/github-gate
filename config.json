@@ -5,5 +5,8 @@
   "oauth_port": 443,
   "oauth_path": "/login/oauth/access_token",
   "oauth_method": "POST",
-  "api_host": "api.github.com"
+  "api_host": "api.github.com",
+  "cookie_key_token": "AuthToken",
+  "origin": "https://mysetsuna.github.io",
+  "domian":"https://mysetsuna.github.io"
 }
