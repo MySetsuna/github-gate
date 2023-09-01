@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "set NODE_ENV=production && set PORT=3001 && node ./bin/www",
-    "start:dev": "set NODE_ENV=production && set PORT=3001 && nodemon ./bin/www",
+    "start:prod-dev": "set NODE_ENV=production && set PORT=3001 && nodemon ./bin/www",
+    "start:dev": "nodemon ./bin/www",
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
