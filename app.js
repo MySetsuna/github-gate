@@ -9,12 +9,12 @@ var { config } = require('./config/index')
 var app = express();
 console.log(config.origin, 'config.origin');
 // 解决跨域
-app.use(cors({ origin: config.origin, credentials: true }));
+app.use(cors({ origin: config.origin, credentials: true, maxAge: '1728000', httpOnly: true }));
 
+app.use(cookieParser());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/authenticate', authRouter);

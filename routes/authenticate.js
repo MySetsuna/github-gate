@@ -2,24 +2,39 @@
 var express = require('express');
 var https = require('https');
 var qs = require('querystring');
-var { config, log } = require('../config/index')
+var { config, log } = require('../config/index');
+const { COOKIE_KEY_STATE } = require('../constant/cookiekeys');
 var router = express.Router();
+var { publicKey, privateKey } = require('../keys')
 
 /* GET users listing. */
-router.get('/:code', function (req, res) {
+router.get('/:code/:state', function (req, res) {
     log('authenticating code:', req.params.code, true);
-    authenticate(req.params.code, function (err, token) {
-        var result;
-        if (err || !token) {
-            result = { error: err || 'bad_code' };
-            log(result.error);
-        } else {
-            result = { token };
-            log('token', result.token, true);
-            res.setHeader('Set-Cookie', `${config.cookie_key_token}=${token}; SameSite=None; Secure=true; Path=/; Domain=${config.origin}`);
-        }
-        res.json(result);
-    });
+    const cookieState = req.cookies[COOKIE_KEY_STATE]
+    const { code, state } = req.params
+    console.log(req.cookies.mooncathcer_authstate, req.params, JSON.stringify(req.cookies), '==================');
+    if (state && state === cookieState) {
+        authenticate(code, function (err, token) {
+            var result;
+            if (err || !token) {
+                result = { error: err || 'bad_code' };
+                log(result.error);
+            } else {
+                var userAgent = req.headers['user-agent']; //获取客户端使用的操作系统和浏览器的名称和版本
+                var host = req.headers['host']; //获取服务端被请求资源的Internet主机和端口号
+                var referer = req.headers['referer']; //获取请求的来源
+                var url = req.url; //获取服务端被请求资源的路径
+                var ip = req.connection.remoteAddress;
+                result = { token };
+                log('token', result.token, true);
+                res.setHeader('Set-Cookie', `${config.cookie_key_token}=${token}; SameSite=None; Secure=true; Path=/; Domain`);
+            }
+            res.json(result);
+        });
+    } else {
+        res.json({ error: 'error state' });
+    }
+
 });
 
 function authenticate(code, cb) {
