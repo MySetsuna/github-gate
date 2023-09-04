@@ -27,7 +27,7 @@ router.get('/:code/:state', function (req, res) {
                 var ip = req.connection.remoteAddress;
                 result = { token };
                 log('token', result.token, true);
-                res.setHeader('Set-Cookie', `${config.cookie_key_token}=${token}; SameSite=None; Secure=true; Path=/; Domain`);
+                res.setHeader('Set-Cookie', `${config.cookie_key_token}=${token}; SameSite=None; Secure=true; Path=/; Domain=${config.domian}`);
             }
             res.json(result);
         });
