@@ -14,7 +14,7 @@ router.put('/cookie', function (req, res) {
     .join("; ")
   console.log(cookiesStr, 'cookiesStr');
   const { expires, name, value } = req.body
-  res.setHeader('Set-Cookie', `${name}=${value}; SameSite=None;  Secure=true; Path=/; expires=${expires}`);
+  res.setHeader('Set-Cookie', `${name}=${value}; SameSite=None; httpOnly=false ;Secure=true; Path=/; ${expires ? `expires=${expires}` : ''}`);
   res.json({ status: 'cookie set' })
 })
 
