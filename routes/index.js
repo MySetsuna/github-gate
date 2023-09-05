@@ -9,22 +9,15 @@ router.get('/', function (req, res, next) {
 });
 
 router.put('/cookie', function (req, res) {
-  console.log(req.body, 'req.body');
-  const cookiesStr = Object.entries(req.body).filter(([key]) => key !== 'expires')
-    .map(([key, value]) => `${key}=${value}`)
-    .join("; ")
-  console.log(cookiesStr, 'cookiesStr');
-  const { expires, name, value } = req.body
-  res.setHeader('Set-Cookie', `${name}=${value}; SameSite=None; httpOnly=false ;Secure=true; Domian=${config.domain}; Path=/; ${expires ? `expires=${expires}` : ''}`);
+  const { expires, cookies, httpOnly } = req.body
+  res.setHeader('Set-Cookie', Object.entries(cookies).map(([name, value]) => `${name}=${value}; SameSite=None; httpOnly=${httpOnly} ;Secure=true; Domian=${config.domain}; Path=/; ${expires ? `expires=${expires}` : ''}`));
   res.json({ status: 'cookie set' })
 })
 
 router.get('/login', function (req, res) {
-  console.log('888888888888888888888', req.cookies);
   const code = req.cookies?.[COOKIE_KEY_CODE]
   const authkey = req.cookies?.[COOKIE_KEY_AUTH]
   const state = req.cookies?.[COOKIE_KEY_STATE]
-  console.log(code, authkey, state, '888888888888888888888');
   if (code && state && authkey) {
     var userAgent = req.headers['user-agent']; //获取客户端使用的操作系统和浏览器的名称和版本
     var host = req.headers['host']; //获取服务端被请求资源的Internet主机和端口号
@@ -36,8 +29,9 @@ router.get('/login', function (req, res) {
       referer,
       url,
       ip, authkey);//获取客户端的ip
+    res.json({ status: 0, msg: 'success', token: authkey })
   } else {
-    res.json({ status: 'express' })
+    res.json({ status: 1, msg: 'express' })
   }
 })
 

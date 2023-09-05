@@ -18,7 +18,7 @@ router.get('/:code/:state', function (req, res) {
             var result;
             if (err || !token) {
                 result = { error: err || 'bad_code' };
-                log(result.error);
+                console.log(result.error);
             } else {
                 var userAgent = req.headers['user-agent']; //获取客户端使用的操作系统和浏览器的名称和版本
                 var host = req.headers['host']; //获取服务端被请求资源的Internet主机和端口号
@@ -27,7 +27,7 @@ router.get('/:code/:state', function (req, res) {
                 var ip = req.connection.remoteAddress;
                 result = { token };
                 log('token', result.token, true);
-                res.setHeader('Set-Cookie', `${config.cookie_key_token}=${token}; SameSite=None; Secure=true; Path=/; Domain=${config.domian}`);
+                res.setHeader('Set-Cookie', `${config.cookie_key_token}=${token}; SameSite=None; Secure=true; Path=/; Domain=${config.domain}`);
             }
             res.json(result);
         });
