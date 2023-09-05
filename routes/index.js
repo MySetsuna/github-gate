@@ -1,4 +1,5 @@
 var express = require('express');
+var { config, log } = require('../config/index');
 const { COOKIE_KEY_CODE, COOKIE_KEY_AUTH, COOKIE_KEY_STATE } = require('../constant/cookiekeys');
 var router = express.Router();
 
@@ -19,9 +20,11 @@ router.put('/cookie', function (req, res) {
 })
 
 router.get('/login', function (req, res) {
-  const code = req.cookies.code[COOKIE_KEY_CODE]
-  const authkey = req.cookies.code[COOKIE_KEY_AUTH]
-  const state = req.cookies.code[COOKIE_KEY_STATE]
+  console.log('888888888888888888888', req.cookies);
+  const code = req.cookies?.[COOKIE_KEY_CODE]
+  const authkey = req.cookies?.[COOKIE_KEY_AUTH]
+  const state = req.cookies?.[COOKIE_KEY_STATE]
+  console.log(code, authkey, state, '888888888888888888888');
   if (code && state && authkey) {
     var userAgent = req.headers['user-agent']; //获取客户端使用的操作系统和浏览器的名称和版本
     var host = req.headers['host']; //获取服务端被请求资源的Internet主机和端口号
