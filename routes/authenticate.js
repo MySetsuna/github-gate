@@ -26,8 +26,8 @@ router.get('/:code/:state', function (req, res) {
                 var url = req.url; //获取服务端被请求资源的路径
                 var ip = req.connection.remoteAddress;
                 result = { token };
-                log('token', result.token, true);
-                res.setHeader('Set-Cookie', `${config.cookie_key_token}=${token}; SameSite=None; Secure=true; Path=/; Domain=${config.domain}`);
+                console.log('token', result.token, true);
+                res.setHeader('Set-Cookie', `${config.cookie_key_token}=${token}; SameSite=None; Secure=true; Path=/;`);
             }
             res.json(result);
         });
