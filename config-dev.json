@@ -7,6 +7,7 @@
     "oauth_method": "POST",
     "api_host": "api.github.com",
     "cookie_key_token": "mooncathcer_authkey",
-    "origin": "https://26.26.26.1:5173",
-    "domain": "26.26.26.1"
+    "origin": "https://127.0.0.1:5173",
+    "domain": "127.0.0.1",
+    "splitTag": "@*-*@"
 }

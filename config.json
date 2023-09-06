@@ -8,5 +8,6 @@
   "api_host": "api.github.com",
   "cookie_key_token": "mooncathcer_authkey",
   "origin": "https://mysetsuna.github.io",
-  "domain":"mysetsuna.github.io"
+  "domain":"mysetsuna.github.io",
+  "splitTag": "@*-*@"
 }
