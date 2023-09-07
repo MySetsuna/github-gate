@@ -8,7 +8,7 @@ var REPLACEMENT = '***';
 
 function loadConfig() {
     var config;
-    if (process.env.NODE_ENV === 'production ') {
+    if (process.env.NODE_ENV === 'production') {
         config = JSON.parse(fs.readFileSync(path.resolve('config.json'), 'utf-8'));
     } else {
         config = JSON.parse(fs.readFileSync(path.resolve('config-dev.json'), 'utf-8'));
