@@ -1,9 +1,8 @@
-FROM node:16.20.2-alpine
+FROM node:16
+WORKDIR /app
+COPY . /app
+RUN npm install
 ENV NODE_ENV=production
-WORKDIR /server 
-COPY package.json /server 
-COPY package-lock.json /server
-RUN npm install --production 
-COPY . /server
+ENV PORT 8080
 EXPOSE 8080
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
