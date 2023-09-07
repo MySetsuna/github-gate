@@ -5,5 +5,5 @@ COPY package.json /server
 COPY package-lock.json /server
 RUN npm install --production 
 COPY . /server
-CMD ["npm", "start"]
 EXPOSE 8080
+CMD ["npm", "run", "start"]
