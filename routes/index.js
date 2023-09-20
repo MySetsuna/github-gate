@@ -10,21 +10,7 @@ var { decrypt } = require("../keys");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.json({ test: 555 });
-});
-
-router.put("/cookie", function (req, res) {
-  const { expires, cookies, httpOnly } = req.body;
-  res.setHeader(
-    "Set-Cookie",
-    Object.entries(cookies).map(
-      ([name, value]) =>
-        `${name}=${value}; SameSite=None; httpOnly=${httpOnly} ;Secure=true; Domian=${
-          config.domain
-        }; Path=/; ${expires ? `expires=${expires}` : ""}`
-    )
-  );
-  res.json({ status: "cookie set" });
+  res.json({ test: 'helow github-caller' });
 });
 
 router.post("/login", async function (req, res) {
