@@ -28,7 +28,6 @@ router.post("/login", async function (req, res) {
     } catch (error) {
       console.log(error);
     }
-    console.log(encryptStr, "encryptStr");
     const params = encryptStr?.split(config.splitTag);
     let token = "";
     if (

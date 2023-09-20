@@ -1,12 +1,12 @@
 {
-  "oauth_client_id": "230d10a766b329d1d0ce",
-  "oauth_client_secret": "e526d845d9ccf0acce71cfe93d91ac26fc90f171",
+  "oauth_client_id": "Fill in the github app id here",
+  "oauth_client_secret": "Fill in the secret key of github app here",
   "oauth_host": "github.com",
   "oauth_port": 443,
   "oauth_path": "/login/oauth/access_token",
   "oauth_method": "POST",
   "api_host": "api.github.com",
-  "origin": "https://moon-catcher.github.io",
-  "domain":"moon-catcher.github.io",
+  "origin": "https://github-account.github.io",
+  "domain": "moon-catcher.github.io",
   "splitTag": "@*-*@"
 }

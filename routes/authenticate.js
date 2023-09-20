@@ -10,7 +10,6 @@ var { publicKey, privateKey, encrypt } = require("../keys");
 router.get("/:code/:state", function (req, res) {
   log("authenticating code:", req.params.code, true);
   const { code, state } = req.params;
-  console.log(req.params, JSON.stringify(req.cookies), "==================");
   if (state) {
     authenticate(code, function (err, token) {
       var result;
@@ -24,7 +23,6 @@ router.get("/:code/:state", function (req, res) {
         // var url = req.url; //获取服务端被请求资源的路径
         var ip = req.connection.remoteAddress;
         result = { token };
-        console.log("token", result.token, true);
         const authkey = encrypt(
           `${userAgent}${config.splitTag}${host}${config.splitTag}${referer}${config.splitTag}${ip}${config.splitTag}${state}${config.splitTag}${code}${config.splitTag}${token}`
         );

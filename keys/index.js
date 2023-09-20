@@ -22,14 +22,12 @@ const { publicKey, privateKey } = generateKeyPairSync("rsa", {
 const encrypt = (text) => {
   // 注意，第二个参数是Buffer类型
   const result = publicEncrypt(publicKey, Buffer.from(text));
-  console.log(result, "encrypt");
   return result;
 };
 
 // 解密方法
 const decrypt = (encrypted) => {
   // 注意，encrypted是Buffer类型
-  console.log(encrypted, "encrypted");
   const result = privateDecrypt(
     {
       key: privateKey.toString(),
@@ -37,7 +35,6 @@ const decrypt = (encrypted) => {
     },
     encrypted
   );
-  console.log(result, "decrypt");
   return result;
 };
 module.exports = { publicKey, privateKey, encrypt, decrypt };

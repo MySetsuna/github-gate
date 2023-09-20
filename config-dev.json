@@ -1,12 +1,12 @@
 {
-    "oauth_client_id": "d01b03edc8b0da44bb1c",
-    "oauth_client_secret": "967cce3d642c90eecca9d51e9015a931337cd0c1",
+    "oauth_client_id": "这里填入github app的id",
+    "oauth_client_secret": "这里填入github app的 秘钥",
     "oauth_host": "github.com",
     "oauth_port": 443,
     "oauth_path": "/login/oauth/access_token",
     "oauth_method": "POST",
     "api_host": "api.github.com",
-    "origin": "https://localhost:5173",
-    "domain": "localhost",
+    "origin": "https://github用户名.github.io",
+    "domain":"moon-catcher.github.io",
     "splitTag": "@*-*@"
 }

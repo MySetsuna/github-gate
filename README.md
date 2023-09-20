@@ -12,12 +12,12 @@
 ## Api
 ### /authenticate/:code/:state
 - method get
-它提供了一个 /authenticate/:code/:state 接口,可以传入在https://github.com/login/oauth/authorize 重定向后获得的state和code;然后返回token和token经过加密后得到的authkey.这里token只做使用,不应该将保存到前端任何地方.只应该保存authkey
+- 它提供了一个 /authenticate/:code/:state 接口,可以传入在https://github.com/login/oauth/authorize 重定向后获得的state和code;然后返回token和token经过加密后得到的authkey.这里token只做使用,不应该将保存到前端任何地方.只应该保存authkey
 
 ### /login
 - method post
 - request body params: {code, state, authkey}
-该项目通过crypto 进行非对称加密.加密token.可以实现前端不保存token,只保存加密数据,state和code,然后通过 /login 接口 传入 code, authkey(加密数据数据), state 进行解密,返回token
+- 该项目通过crypto 进行非对称加密.加密token.可以实现前端不保存token,只保存加密数据,state和code,然后通过 /login 接口 传入 code, authkey(加密数据数据), state 进行解密,返回token
 
 
 ## config
